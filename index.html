@@ -89,7 +89,6 @@ nav.top .brand b{color:var(--gold)}
 .khaki .res{background:var(--black);color:#fff}
 .khaki .note{color:#3a3620}
 .navy .card{background:#ffffff0f;border-color:#ffffff26}
-.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
 label{display:block;font-weight:600;font-size:15px;margin:10px 0 4px}
 input,select,textarea{font:16px Barlow,system-ui,sans-serif;width:100%;padding:10px 12px;min-height:46px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
 .navy input{border-color:#ffffff55}
@@ -147,7 +146,7 @@ footer h3{color:var(--gold)}
 footer h3{color:#fff}
 .cols{columns:3 220px;column-gap:28px}
 .cols p{break-inside:avoid;margin:0 0 12px}
-@media(max-width:760px){.holes{grid-template-columns:repeat(6,minmax(0,1fr))}.grid2,.calc{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.holes{grid-template-columns:repeat(6,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.tiers td:first-child{font-size:17px}.tiers th,.tiers td{padding:7px 3px}.links{order:3;width:100%}.holes{grid-template-columns:repeat(3,minmax(0,1fr))}table{font-size:14px}th,td{padding:7px 4px}.sched li{grid-template-columns:5.5em minmax(0,1fr)}.sched time{font-size:22px}}
 @media(prefers-reduced-motion:no-preference){.flag{transform-box:fill-box;transform-origin:0 50%;animation:wave 2.4s ease-in-out infinite}@keyframes wave{50%{transform:skewY(-6deg) scaleX(.92)}}}
 </style>
@@ -291,23 +290,6 @@ footer h3{color:#fff}
   </div>
 </div></section>
 
-<section class="band khaki" id="system36"><div class="wrap">
-  <h2><span lang="id">Hitung skor System 36 Anda</span><span lang="en">Work out your System 36 score</span></h2>
-  <p class="lead"><span lang="id">Di setiap hole: par atau lebih baik = 2 poin, bogey = 1, double bogey atau lebih = 0. Handicap = 36 − total poin. Nett = gross − handicap.</span><span lang="en">On each hole: par or better = 2 points, bogey = 1, double bogey or worse = 0. Handicap = 36 − total points. Nett = gross − handicap.</span></p>
-  <div class="calc" style="margin-top:20px">
-    <div>
-      <label for="c-gross"><span lang="id">Skor gross (18 hole)</span><span lang="en">Gross score (18 holes)</span></label><input id="c-gross" type="number" inputmode="numeric" min="54" max="160" value="92">
-      <label for="c-par"><span lang="id">Jumlah hole par atau lebih baik</span><span lang="en">Holes at par or better</span></label><input id="c-par" type="number" inputmode="numeric" min="0" max="18" value="4">
-      <label for="c-bog"><span lang="id">Jumlah hole bogey</span><span lang="en">Holes at bogey</span></label><input id="c-bog" type="number" inputmode="numeric" min="0" max="18" value="8">
-      <p class="note" id="c-err"></p>
-    </div>
-    <div class="res" aria-live="polite">
-      <span lang="id">Skor nett</span><span lang="en">Nett score</span>
-      <b id="c-nett">–</b>
-      <div id="c-work"></div>
-    </div>
-  </div>
-</div></section>
 
 <section class="band" id="aturan"><div class="wrap">
   <h2><span lang="id">Ketentuan pertandingan</span><span lang="en">Competition rules</span></h2>
@@ -542,16 +524,8 @@ function tick() {
   $('#count').innerHTML = [[d, t('hari','days')], [h, t('jam','hours')], [m, t('menit','min')]].map(([v, l]) => `<div><b>${v}</b><small>${l}</small></div>`).join('');
 }
 
-function calc() {
-  const g = +$('#c-gross').value, p = +$('#c-par').value, b = +$('#c-bog').value;
-  if (!g || p < 0 || b < 0 || p + b > 18) { $('#c-nett').textContent = '–'; $('#c-err').textContent = t('Jumlah hole par dan bogey maksimal 18.','Par and bogey holes add up to 18 at most.'); $('#c-work').textContent = ''; return; }
-  $('#c-err').textContent = '';
-  const pts = 2 * p + b, hcp = 36 - pts;
-  $('#c-nett').textContent = g - hcp;
-  $('#c-work').textContent = `${t('Poin','Points')} ${pts} · Hcp ${hcp} · Gross ${g}`;
-}
 
-function renderAll() { renderStatic(); renderBoard(); renderNov(); tick(); calc(); }
+function renderAll() { renderStatic(); renderBoard(); renderNov(); tick(); }
 function setLang(l) {
   document.documentElement.dataset.lang = l; document.documentElement.lang = l;
   $('#l-id').setAttribute('aria-pressed', l === 'id'); $('#l-en').setAttribute('aria-pressed', l === 'en');
@@ -563,7 +537,6 @@ $('#l-id').addEventListener('click', () => setLang('id'));
 $('#l-en').addEventListener('click', () => setLang('en'));
 $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { view = b.dataset.v; renderBoard(); } });
 $('#sample').addEventListener('click', () => { sample = !sample; renderBoard(); });
-['#c-gross', '#c-par', '#c-bog'].forEach(s => $(s).addEventListener('input', calc));
 $('#copy').addEventListener('click', async () => { const b = $('#copy'); try { await navigator.clipboard.writeText($('#acct').textContent); b.textContent = t('Tersalin','Copied'); } catch (e) { b.textContent = t('Salin manual','Copy by hand'); } });
 $('#join').addEventListener('submit', async e => {
   e.preventDefault();
