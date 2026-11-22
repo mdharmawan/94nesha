@@ -111,9 +111,6 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .win small{display:block;color:var(--soft);font-size:13px}
 details{border-top:1px solid var(--line);padding:12px 0}
 summary{cursor:pointer;font-weight:700;font-size:18px;min-height:30px}
-.bank{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--deep);color:#fff;border:1px solid var(--gold);border-radius:14px;padding:16px 18px;margin-top:16px}
-.bank b{font:800 30px "Barlow Condensed",sans-serif;letter-spacing:.02em;white-space:nowrap}
-.warn{font-size:14px;margin-top:8px;color:var(--soft)}
 .shirt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
 .shirt figure{margin:0}
 .shirt img{width:100%;height:auto;border-radius:16px;display:block}
@@ -314,13 +311,6 @@ footer h3{color:#fff}
   <h2><span lang="id">Sponsor kami</span><span lang="en">Our sponsors</span></h2>
   <p class="note"><span lang="id">Hadiah mobil hole in one di hole 3, 7, 11 dan 14 didukung oleh BYD Haka.</span><span lang="en">The hole-in-one cars on holes 3, 7, 11 and 14 are backed by BYD Haka.</span></p>
   <div id="wall"></div>
-  <div class="grid2">
-    <div><h3><span lang="id">Kontak sponsorship</span><span lang="en">Sponsorship contacts</span></h3>
-      <p><a href="https://wa.me/6281289294727">Santy · +62 812-8929-4727</a><br><a href="https://wa.me/6281212909042">Bulan · +62 812-1290-9042</a></p></div>
-    <div><h3><span lang="id">Rekening panitia</span><span lang="en">Committee account</span></h3>
-      <div class="bank"><div><small>Bank BJB · a/n Perkumpulan Golf ITB 94</small><br><b id="acct">0162988115100</b></div><button class="btn" id="copy"><span lang="id">Salin</span><span lang="en">Copy</span></button></div>
-      <p class="warn" style="color:#c9d1e4"><span lang="id">Kirim bukti transfer ke kontak di atas. Panitia tidak pernah meminta transfer ke rekening pribadi.</span><span lang="en">Send your transfer receipt to the contacts above. The committee never asks for transfers to personal accounts.</span></p></div>
-  </div>
 </div></section>
 
 <section class="band" id="beasiswa"><div class="wrap grid2" style="margin-top:0">
@@ -518,7 +508,6 @@ $('#l-id').addEventListener('click', () => setLang('id'));
 $('#l-en').addEventListener('click', () => setLang('en'));
 $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { view = b.dataset.v; renderBoard(); } });
 $('#sample').addEventListener('click', () => { sample = !sample; renderBoard(); });
-$('#copy').addEventListener('click', async () => { const b = $('#copy'); try { await navigator.clipboard.writeText($('#acct').textContent); b.textContent = t('Tersalin','Copied'); } catch (e) { b.textContent = t('Salin manual','Copy by hand'); } });
 $('#join').addEventListener('submit', async e => {
   e.preventDefault();
   const msg = `Daftar komunitas 94nesha\nNama: ${$('#j-name').value}\nAngkatan: ${$('#j-year').value}\nJurusan: ${$('#j-major').value}\nWhatsApp: ${$('#j-wa').value}\nMain golf: ${$('#j-golf').value}`;
