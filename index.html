@@ -126,17 +126,13 @@ summary{cursor:pointer;font-weight:700;font-size:18px;min-height:30px}
 .tier h3{display:flex;align-items:baseline;gap:10px;color:var(--gold)}
 .tier h3 small{font:500 14px Barlow,system-ui,sans-serif;color:#c9d1e4}
 .logos{display:grid;gap:12px;margin-top:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--w)),1fr))}
-.logos.lg{--w:280px}.logos.md{--w:190px}.logos.sm{--w:118px}
+.logos.lg{--w:280px}.logos.md{--w:190px}.logos.sm{--w:150px}
 .logo{background:#fff;color:#0f2147;border-radius:12px;display:grid;place-items:center;text-align:center;padding:14px;font:800 22px "Barlow Condensed",sans-serif;min-height:96px}
 .logos.lg .logo{min-height:140px;font-size:30px}.logos.sm .logo{min-height:72px;font-size:18px}
 .logo img{max-width:100%;max-height:100px;object-fit:contain}
-.logos .logo.open,.hiocard .logo.open{background:none;border:2px dashed #ffffff4d;color:#c9d1e4;font:600 15px Barlow,system-ui,sans-serif}
-.hiog{display:grid;gap:12px;margin-top:10px;grid-template-columns:repeat(4,minmax(0,1fr))}
-.hiocard{border:1px solid var(--gold);border-radius:14px;padding:14px;background:#ffffff0a}
-.hiocard small{display:block;color:#c9d1e4;font-size:13px}
-.hiocard b{display:block;font:800 24px "Barlow Condensed",sans-serif;color:var(--gold)}
-.hiocard .logo{min-height:72px;margin-top:10px;font-size:18px}
-@media(max-width:760px){.hiog{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.logos.sm .logo img{max-height:64px}
+.logo small{display:block;margin-top:4px;font:600 12px Barlow,system-ui,sans-serif;color:#0f2147}
+.logos .logo.open{background:none;border:2px dashed #ffffff4d;color:#c9d1e4;font:600 15px Barlow,system-ui,sans-serif}
 .meter{height:16px;border-radius:999px;background:#ffffff26;overflow:hidden;margin:12px 0 6px}
 .meter i{display:block;height:100%;background:var(--gold)}
 footer{background:var(--black);color:#d8d2c0;font-size:15px}
@@ -350,30 +346,50 @@ const DATA = {
   players: [],                // {n:"Name", itb94:true, pro:false, nr:false, s:[18 strokes]}
   novelty: {ntp: null, ntl: null, ld: null},   // winner names
   hio: [],                    // e.g. [{hole:7, n:"Name"}]
-  // {name, tier: Platinum|Gold|Silver|Bronze|Hole in one, hole (hole-in-one only), logo: data URI (optional)}
+  // {name, tier: Platinum|Gold|Silver|Bronze|Hole in one|Pendukung|Doorprize, logo: "sponsors/<file>" (optional; name shows as text without it), sub: caption under the logo (optional)}
   sponsors: [
-    {"name": "Telkomsel", "tier": "Platinum"},
-    {"name": "Solstice", "tier": "Gold"},
-    {"name": "Infranexia", "tier": "Gold"},
-    {"name": "Mitratel", "tier": "Gold"},
-    {"name": "Telkom Indonesia", "tier": "Gold"},
-    {"name": "Hariff Daya Tunggal Engineering", "tier": "Gold"},
-    {"name": "PetroPro", "tier": "Silver"},
-    {"name": "Password", "tier": "Silver"},
-    {"name": "SLB", "tier": "Silver"},
+    {"name": "Telkomsel", "tier": "Platinum", "logo": "sponsors/telkomsel.webp"},
+    {"name": "Telkom Indonesia", "tier": "Gold", "logo": "sponsors/telkom-indonesia.webp"},
+    {"name": "Mitratel", "tier": "Gold", "logo": "sponsors/mitratel.webp"},
+    {"name": "Infranexia", "tier": "Gold", "logo": "sponsors/infranexia.webp"},
+    {"name": "Hariff Daya Tunggal Engineering", "tier": "Gold", "logo": "sponsors/hariff.webp"},
+    {"name": "Solstice Energy Services", "tier": "Gold", "logo": "sponsors/solstice.webp"},
+    {"name": "SLB", "tier": "Silver", "logo": "sponsors/slb.webp"},
+    {"name": "Password Solusi Sistem", "tier": "Silver", "logo": "sponsors/password.webp"},
+    {"name": "PetroPro", "tier": "Silver", "logo": "sponsors/petropro.webp"},
     {"name": "Cahaya Mutiara Mandiri", "tier": "Silver"},
-    {"name": "Pageo", "tier": "Bronze"},
-    {"name": "AKF", "tier": "Bronze"},
-    {"name": "Baker Hughes", "tier": "Bronze"},
-    {"name": "Halliburton", "tier": "Bronze"},
-    {"name": "Samudera 7", "tier": "Bronze"},
-    {"name": "Spedco Kaltim", "tier": "Bronze"},
-    {"name": "Sigma Cipta Utama", "tier": "Bronze"},
-    {"name": "Dua Pilar Internusa", "tier": "Bronze"},
-    {"name": "BYD Haka", "tier": "Hole in one", "hole": 3},
-    {"name": "BYD Haka", "tier": "Hole in one", "hole": 7},
-    {"name": "BYD Haka", "tier": "Hole in one", "hole": 11},
-    {"name": "BYD Haka", "tier": "Hole in one", "hole": 14}
+    {"name": "Baker Hughes", "tier": "Bronze", "logo": "sponsors/baker-hughes.webp"},
+    {"name": "Elnusa", "tier": "Bronze", "logo": "sponsors/elnusa.webp"},
+    {"name": "Anugrah Karya Fortuna (AKF)", "tier": "Bronze", "logo": "sponsors/akf.webp"},
+    {"name": "Samudera Tujuh (SATU)", "tier": "Bronze", "logo": "sponsors/samudera-7.webp"},
+    {"name": "Darma Henwa", "tier": "Bronze", "logo": "sponsors/darma-henwa.webp"},
+    {"name": "Birdie", "tier": "Bronze", "logo": "sponsors/birdie.webp"},
+    {"name": "PDU Drilling Services", "tier": "Bronze", "logo": "sponsors/pdu.webp"},
+    {"name": "SCU", "tier": "Bronze", "logo": "sponsors/scu.webp"},
+    {"name": "Benvors", "tier": "Bronze", "logo": "sponsors/benvors.webp"},
+    {"name": "Pertamina NRE", "tier": "Bronze", "logo": "sponsors/pertamina.svg", "sub": "New & Renewable Energy"},
+    {"name": "Dua Pilar Internusa (2Pi Energy)", "tier": "Bronze", "logo": "sponsors/dua-pilar.webp"},
+    {"name": "Artotel Group", "tier": "Bronze", "logo": "sponsors/artotel.webp"},
+    {"name": "Pertamina Training & Consulting", "tier": "Bronze", "logo": "sponsors/ptc.webp"},
+    {"name": "Bina Mitra Artha (BMA)", "tier": "Hole in one", "logo": "sponsors/bma.webp"},
+    {"name": "Pageo", "tier": "Hole in one", "logo": "sponsors/pageo.webp"},
+    {"name": "Tirta Bumi Manunggal", "tier": "Hole in one", "logo": "sponsors/tirta-bumi-manunggal.webp"},
+    {"name": "Halliburton Logging Services Indonesia", "tier": "Hole in one", "logo": "sponsors/halliburton.webp"},
+    {"name": "Oceanusa", "tier": "Hole in one", "logo": "sponsors/oceanusa.webp"},
+    {"name": "CNLC", "tier": "Hole in one"},
+    {"name": "GTN", "tier": "Hole in one", "logo": "sponsors/gtn.webp"},
+    {"name": "Denza · Haka (BYD)", "tier": "Hole in one", "logo": "sponsors/denza-haka.webp"},
+    {"name": "Mastersystem Infotama", "tier": "Hole in one", "logo": "sponsors/mastersystem.webp"},
+    {"name": "Media Telekomunikasi Mandiri (MTM)", "tier": "Hole in one", "logo": "sponsors/mtm.webp"},
+    {"name": "MIPCON", "tier": "Hole in one", "logo": "sponsors/mipcon.webp"},
+    {"name": "Cohesity", "tier": "Hole in one", "logo": "sponsors/cohesity.webp"},
+    {"name": "Dahana", "tier": "Hole in one", "logo": "sponsors/dahana.webp"},
+    {"name": "Surya Energi Indotama", "tier": "Hole in one", "logo": "sponsors/surya-energi-indotama.webp"},
+    {"name": "Huatong Services Indonesia", "tier": "Pendukung", "logo": "sponsors/huatong.webp"},
+    {"name": "Spedco Kaltim", "tier": "Pendukung", "logo": "sponsors/spedco-kaltim.webp"},
+    {"name": "Semen Padang", "tier": "Pendukung", "logo": "sponsors/semen-padang.webp"},
+    {"name": "Oceanindo Prima Sarana", "tier": "Doorprize", "logo": "sponsors/oceanindo.webp"},
+    {"name": "Adiguna Cakra Semesta (ACS)", "tier": "Doorprize", "logo": "sponsors/acs.webp"}
   ],
   fund: null,                 // scholarship total raised in rupiah, entered by the treasurer
   fundUpdated: null
@@ -470,18 +486,22 @@ function renderNov() {
 function renderStatic() {
   $('#sched').innerHTML = sched.map(([tm, end, id, en]) => `<li><time>${tm}${end ? `<small>${t('s.d.','to')} ${end}</small>` : ''}</time><div><b>${t(id, en)}</b></div></li>`).join('');
   $('#holes').innerHTML = Array.from({length: 18}, (_, i) => { const h = holes[i + 1]; return `<div class="hole ${h ? h[0] : ''}"><b>${i + 1}</b>${h ? `<small>${h[1]}</small>` : ''}</div>`; }).join('');
-  const tile = sp => `<div class="logo">${sp.logo ? `<img src="${esc(sp.logo)}" alt="${esc(sp.name)}">` : esc(sp.name)}</div>`;
+  const tile = sp => `<div class="logo">${sp.logo ? `<img src="${esc(sp.logo)}" alt="${esc(sp.name)}" title="${esc(sp.name)}" loading="lazy">${sp.sub ? `<small>${esc(sp.sub)}</small>` : ''}` : esc(sp.name)}</div>`;
   const open = l => `<div class="logo open">${t('Slot ' + l + ' tersedia', l + ' slot available')}</div>`;
-  const sizes = {Platinum:['lg', t('logo besar','large logo')], Gold:['md', t('logo sedang','medium logo')], Silver:['md', t('logo sedang','medium logo')], Bronze:['sm', t('logo kecil','small logo')]};
-  let wall = Object.entries(sizes).map(([tier, [sz, note]]) => {
+  const tiers = [
+    ['Platinum', 'lg', 'Platinum', t('logo besar','large logo')],
+    ['Gold', 'md', 'Gold', t('logo sedang','medium logo')],
+    ['Silver', 'md', 'Silver', t('logo sedang','medium logo')],
+    ['Bronze', 'sm', 'Bronze', t('logo kecil','small logo')],
+    ['Hole in one', 'sm', t('Sponsor hole in one','Hole-in-one sponsors'), ''],
+    ['Pendukung', 'sm', t('Pendukung','Supporting sponsors'), ''],
+    ['Doorprize', 'sm', t('Sponsor door prize','Door prize sponsors'), '']
+  ];
+  const wall = tiers.map(([tier, sz, label, note]) => {
     const list = DATA.sponsors.filter(x => x.tier === tier);
-    return `<div class="tier"><h3>${tier} <small>${note}</small></h3><div class="logos ${sz}">${list.length ? list.map(tile).join('') : open(tier)}</div></div>`;
+    if (!list.length && !note) return '';
+    return `<div class="tier"><h3>${label}${note ? ` <small>${note}</small>` : ''}</h3><div class="logos ${sz}">${list.length ? list.map(tile).join('') : open(tier)}</div></div>`;
   }).join('');
-  const cars = {3:'BYD Seal', 7:'Denza D9', 11:'BYD Dolphin', 14:'BYD M6'};
-  wall += `<div class="tier"><h3>${t('Sponsor hole in one','Hole-in-one sponsors')}</h3><div class="hiog">${Object.entries(cars).map(([h, car]) => {
-    const sp = DATA.sponsors.find(x => x.tier === 'Hole in one' && +x.hole === +h);
-    return `<div class="hiocard"><small>Hole ${h}</small><b>${car}</b>${sp ? tile(sp) : open('hole ' + h)}</div>`;
-  }).join('')}</div></div>`;
   $('#wall').innerHTML = wall;
   $('#fund').innerHTML = DATA.fund ? `<div class="res" style="color:#fff;margin-top:16px">${t('Dana terkumpul','Funds raised')}<b>${rp(DATA.fund)}</b><small>${t('Diperbarui','Updated')} ${DATA.fundUpdated || ''}</small></div>` : `<div class="empty" style="margin-top:16px">${t('Total dana beasiswa diumumkan bendahara setelah acara.','The treasurer will post the scholarship total after the event.')}</div>`;
   const st = statusText[DATA.status] || statusText.before;

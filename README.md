@@ -10,4 +10,6 @@ The site is a single self-contained page (`index.html`) in Bahasa Indonesia and 
 
 Event data (play status, pars, players, novelty and hole-in-one winners, sponsors, scholarship total) lives in the `DATA` block near the bottom of `index.html`. Edit it and commit; GitHub Pages republishes automatically.
 
+Sponsor logos live in `sponsors/` (web-sized WebP, white background, trimmed). Point a sponsor's `logo` field in `DATA.sponsors` at its file; a sponsor without a logo shows its name as text.
+
 Organised by Perkumpulan Golf ITB 94.
