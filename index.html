@@ -44,8 +44,8 @@ nav.top .brand b{color:var(--gold)}
 .hero .in{position:relative;padding:clamp(40px,7vw,96px) max(5vw,16px) clamp(150px,18vw,210px);max-width:1180px;margin:0 auto}
 .mark{font:800 clamp(64px,13vw,150px)/.9 "Barlow Condensed",sans-serif;letter-spacing:-.02em}
 .mark b{color:var(--gold)}
+.mark img{display:block;width:clamp(220px,32vw,340px);height:auto}
 .hero .facts{color:var(--navy)}
-.sub{font:600 clamp(26px,4vw,40px)/1 "Barlow Condensed",sans-serif;color:var(--gold);margin-top:6px}
 .facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:18px;font-weight:600}
 .facts span{white-space:nowrap}
 .count{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
@@ -113,6 +113,10 @@ details{border-top:1px solid var(--line);padding:12px 0}
 summary{cursor:pointer;font-weight:700;font-size:18px;min-height:30px}
 .shirt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
 .shirt figure{margin:0}
+.ent{display:flex;gap:clamp(20px,4vw,40px);align-items:center}
+.ent figure{margin:0;flex:none}
+.ent img{display:block;width:clamp(150px,20vw,200px);height:auto}
+@media(max-width:520px){.ent{flex-direction:column;align-items:flex-start}}
 .shirt img{width:100%;height:auto;border-radius:16px;display:block}
 .spec{list-style:none;padding:0;margin:18px 0 0}
 .spec li{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
@@ -183,8 +187,7 @@ footer h3{color:#fff}
     <path d="M0 560 Q300 545 600 556 T1200 552 V600 H0Z" fill="#001b42"/>
   </svg>
   <div class="in">
-    <h1 class="mark"><b>94</b>NESHA</h1>
-    <div class="sub">Golf Fest 2026</div>
+    <h1 class="mark"><img src="assets/logo-94nesha-golf-fest-2026.png" width="300" height="199" alt="94nesha Golf Fest 2026"></h1>
     <div class="facts">
       <span><span lang="id">Sabtu, 28 November 2026</span><span lang="en">Saturday, 28 November 2026</span></span>
       <span>Shotgun 12.30 WIB</span>
@@ -246,7 +249,15 @@ footer h3{color:#fff}
       <li><b>Grand door prize:</b> <span lang="id">motor</span><span lang="en">a motorcycle</span></li>
       <li><span lang="id">6 smart TV, aksesori golf dan lainnya</span><span lang="en">6 smart TVs, golf accessories and more</span></li>
       <li><span lang="id">Lucky draw & grand lucky draw</span><span lang="en">Lucky draw & grand lucky draw</span></li>
-      <li><span lang="id">Penampilan Jamrud</span><span lang="en">Live performance by Jamrud</span></li></ul></div>
+      <li><span lang="id">Penampilan Krisyanto (vokalis Jamrud)</span><span lang="en">Live performance by Krisyanto (Jamrud)</span></li></ul></div>
+  </div>
+</div></section>
+
+<section class="band" id="hiburan"><div class="wrap ent">
+  <figure><img src="assets/krisyanto-jamrud.png" width="159" height="261" alt="Krisyanto, vokalis Jamrud" loading="lazy"></figure>
+  <div>
+    <h2><span lang="id">Hiburan</span><span lang="en">Entertainment</span></h2>
+    <p class="lead"><span lang="id">Krisyanto, vokalis Jamrud, tampil di malam penyerahan hadiah, pukul 18.30–21.30.</span><span lang="en">Krisyanto, lead singer of Jamrud, performs at the prize-giving evening, 18.30–21.30.</span></p>
   </div>
 </div></section>
 
@@ -388,7 +399,7 @@ const sched = [
   ['11.00', '', 'Registrasi peserta', 'Player registration'],
   ['12.30', '', 'Shotgun start, 18 hole', 'Shotgun start, 18 holes'],
   ['17.30', '', 'Permainan selesai', 'Play finishes'],
-  ['18.30', '21.30', 'Penyerahan hadiah & hiburan: pemenang, lucky draw, grand lucky draw, Jamrud', 'Prize ceremony & entertainment: winners, lucky draws, Jamrud']
+  ['18.30', '21.30', 'Penyerahan hadiah & hiburan: pemenang, lucky draw, grand lucky draw, Krisyanto (vokalis Jamrud)', 'Prize ceremony & entertainment: winners, lucky draws, Krisyanto of Jamrud']
 ];
 const holes = {3:['hio','BYD Seal · DZ'],7:['hio','Denza D9 · NTP'],8:['','DZ'],9:['nov','Nearest to the Line'],11:['hio','BYD Dolphin · DZ'],13:['nov','Longest Drive'],14:['hio','BYD M6']};
 const statusText = {
