@@ -6,7 +6,7 @@
   const ctx = cv.getContext('2d');
   const W = 360, H = 540, BR = 7, CR = 10, MAXP = 17, CAP = 8;
   const GREEN = {x: 16, y: 16, w: 328, h: 508};
-  const LB = (typeof DATA !== 'undefined' && DATA.leaderboard) || '';
+  const LB = window.PUTT_LB || '';
   const tt = (id, en) => (document.documentElement.dataset.lang === 'en' ? en : id);
   const el = id => document.getElementById(id);
 
