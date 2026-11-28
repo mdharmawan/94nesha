@@ -309,27 +309,10 @@ footer h3{color:#fff}
   <div id="wall"></div>
 </div></section>
 
-<section class="band" id="beasiswa"><div class="wrap grid2" style="margin-top:0">
-  <div>
+<section class="band" id="beasiswa"><div class="wrap">
     <h2><span lang="id">Beasiswa 94</span><span lang="en">Beasiswa 94 scholarships</span></h2>
     <p class="lead"><span lang="id">Dana yang terkumpul dari turnamen ini mendukung beasiswa bagi mahasiswa yang membutuhkan.</span><span lang="en">Funds raised by the tournament support scholarships for students in need.</span></p>
     <div id="fund"></div>
-  </div>
-  <form class="card" id="join">
-    <h3><span lang="id">Gabung komunitas 94nesha</span><span lang="en">Join the 94nesha community</span></h3>
-    <p class="note"><span lang="id">Isi lalu salin pesannya ke WhatsApp panitia atau grup angkatan Anda.</span><span lang="en">Fill this in, then paste the message to the committee or your class WhatsApp group.</span></p>
-    <label for="j-name"><span lang="id">Nama</span><span lang="en">Name</span></label><input id="j-name" required autocomplete="name">
-    <div class="grid2" style="margin-top:0;gap:12px">
-      <div><label for="j-year">Angkatan</label><input id="j-year" inputmode="numeric" value="1994"></div>
-      <div><label for="j-major">Jurusan</label><input id="j-major"></div>
-    </div>
-    <label for="j-wa">WhatsApp</label><input id="j-wa" type="tel" autocomplete="tel">
-    <label for="j-golf"><span lang="id">Main golf?</span><span lang="en">Do you golf?</span></label>
-    <select id="j-golf"><option value="Ya">Ya / Yes</option><option value="Belum">Belum / Not yet</option></select>
-    <label style="display:flex;gap:10px;align-items:flex-start;font-weight:500"><input id="j-ok" type="checkbox" required style="width:22px;min-height:22px;margin-top:3px"><span><span lang="id">Saya setuju data ini dipakai panitia untuk komunitas 94nesha.</span><span lang="en">I agree the committee may use this data for the 94nesha community.</span></span></label>
-    <button class="btn" type="submit" style="margin-top:12px;width:100%"><span lang="id">Salin pesan pendaftaran</span><span lang="en">Copy sign-up message</span></button>
-    <p class="note" id="j-msg" aria-live="polite"></p>
-  </form>
 </div></section>
 
 <footer class="band"><div class="wrap">
@@ -528,12 +511,6 @@ $('#l-id').addEventListener('click', () => setLang('id'));
 $('#l-en').addEventListener('click', () => setLang('en'));
 $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { view = b.dataset.v; renderBoard(); } });
 $('#sample').addEventListener('click', () => { sample = !sample; renderBoard(); });
-$('#join').addEventListener('submit', async e => {
-  e.preventDefault();
-  const msg = `Daftar komunitas 94nesha\nNama: ${$('#j-name').value}\nAngkatan: ${$('#j-year').value}\nJurusan: ${$('#j-major').value}\nWhatsApp: ${$('#j-wa').value}\nMain golf: ${$('#j-golf').value}`;
-  try { await navigator.clipboard.writeText(msg); $('#j-msg').textContent = t('Pesan tersalin. Tempel di WhatsApp panitia atau grup angkatan.','Message copied. Paste it to the committee or your class WhatsApp group.'); }
-  catch (err) { $('#j-msg').textContent = msg; }
-});
 
 let saved = 'id'; try { saved = localStorage.getItem('94lang') || 'id'; } catch (e) {}
 setLang(saved);
